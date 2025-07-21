@@ -1,0 +1,160 @@
+/* ////////////////////////// */
+/* Imports                      */
+/* ////////////////////////// */
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"); */
+@import "tailwindcss";
+@import "./css/animations.css";
+@import "./css/toastify.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility container {
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+/* ////////////////////////// */
+/* Theme variables            */
+/* ////////////////////////// */
+@theme {
+	--color-primary: #da4d35;
+	--color-accent: #f2835c;
+	--color-black: #060504;
+	--color-gray: #474747;
+	--color-white: #f9f9f9;
+	--ease-custom: cubic-bezier(0.61, 1, 0.88, 1);
+	--font-poppins: "Poppins", sans-serif;
+	--z-dropdown: 10;
+}
+
+/* ////////////////////////// */
+/* Base styles                */
+/* ////////////////////////// */
+@layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply min-h-screen overflow-x-hidden font-poppins font-normal text-base text-black bg-white dark:text-white dark:bg-black;
+	}
+
+	button {
+		@apply cursor-pointer;
+	}
+
+	input {
+		@apply outline-none;
+	}
+
+	li {
+		@apply list-none;
+	}
+
+	.icon-svg {
+		@apply flex justify-center items-center duration-200 ease-custom;
+	}
+}
+
+/* components */
+@layer components {
+	/* dropdown component */
+	.dropdown-holder {
+		@apply relative;
+		z-index: var(--z-dropdown);
+	}
+
+	.dropdown {
+		@apply absolute right-1/2 top-[110%] bg-slate-50 rounded-lg border border-solid border-black/10 dark:bg-neutral-800 dark:border-white/10 shadow-lg;
+	}
+
+	.dropdown-item {
+		@apply text-center;
+	}
+
+	.dropdown-btn {
+		@apply text-xl flex justify-center items-center text-center py-4 w-36 duration-200 ease-custom hover:text-accent;
+	}
+
+	.btn-rounded-full {
+		@apply rounded-full border border-solid border-black/10 p-3 bg-slate-50 duration-200 ease-custom dark:bg-transparent dark:border-white/10 hover:bg-primary hover:text-white;
+	}
+
+	.btn-rounded {
+		@apply hover:bg-gray-100 duration-200 ease-custom rounded-full w-full py-3 bg-gray/5 border border-solid border-black/10 dark:bg-neutral-700 dark:border-white/10 dark:hover:bg-neutral-800;
+	}
+}
+
+[data-toggler] .icon-svg.active {
+	@apply w-5 h-5 scale-100;
+}
+
+[data-toggler] .icon-svg:not(.active) {
+	@apply w-0 h-0 text-[0px] scale-0;
+}
+
+#toggle-dropdown {
+	&.active {
+		@apply bg-primary text-white;
+	}
+}
+
+/* main styles */
+
+.main {
+	@apply py-10;
+}
+
+.timer-mode--icon svg:not(.active) {
+	@apply w-0 h-0;
+}
+
+.timer-icon.active {
+	@apply opacity-100 w-8 h-8 md:w-12 md:h-12;
+}
+
+.pomodoro {
+	@apply select-none bg-white/90 backdrop-blur-md w-full md:w-96 mx-auto rounded-2xl border border-solid border-black/10 px-3 py-4 md:px-6 md:py-8 dark:border-white/10 dark:bg-neutral-900/90;
+}
+
+.tracker {
+	display: none;
+}
+
+@media (hover: hover) {
+	.tracker {
+		@apply block pointer-events-none duration-100 ease-custom scale-0 opacity-0 absolute h-full top-0 bg-neutral-100/50 rounded-full dark:bg-neutral-600/50;
+
+		&.on {
+			@apply scale-100 opacity-100;
+		}
+	}
+}
+
+[type="number"]::-webkit-inner-spin-button {
+	@apply appearance-none;
+}
+
+.custom-checkbox {
+	@apply rounded-full border border-solid border-black/10 inline-block w-16 h-8 duration-200 ease-custom dark:border-white/10 dark:bg-neutral-700;
+}
+
+.custom-checkbox-inner {
+	@apply translate-y-[-1px] inline-block bg-neutral-400 w-8 h-8 rounded-full duration-200 ease-custom;
+}
+
+.checkbox:checked ~ .custom-checkbox {
+	@apply bg-neutral-200 dark:bg-neutral-900;
+}
+
+.checkbox:checked ~ .custom-checkbox > .custom-checkbox-inner {
+	@apply translate-x-full bg-blue-500;
+}
+
+.pomodoro-modal--nav button.active {
+	@apply bg-slate-100 rounded-full dark:bg-neutral-700;
+}
+
+#progress {
+	@apply duration-100 ease-custom;
+}
