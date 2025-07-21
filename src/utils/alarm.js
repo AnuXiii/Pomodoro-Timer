@@ -8,6 +8,24 @@ let alarmRepeatCount = 0;
 let alarmStopped = false;
 let alarmAudio;
 
+// Move onEnded outside so it can be referenced in both alarm() and stopAlarm()
+function onEnded() {
+	if (alarmStopped) return;
+
+	alarmRepeatCount--;
+
+	if (alarmRepeatCount > 0) {
+		alarmAudio.currentTime = 0;
+		alarmAudio.play();
+		navigator.vibrate([500, 300, 500]);
+	} else {
+		alarmRepeatCount = settings.notifications.repeat;
+		hideWithAnimation(alarmModal, "move-right", "move-left");
+		document.title = "Pomodoro Timer";
+		alarmAudio.removeEventListener("ended", onEnded);
+	}
+}
+
 const alarmCheckBox = document.getElementById("active-alarm");
 const alarmRepeatCountInput = document.getElementById("alarm-repeat-count");
 const alarmModal = document.getElementById("alarm-modal");
@@ -70,31 +88,15 @@ function alarm() {
 		alarmAudio.pause();
 		alarmAudio.currentTime = 0;
 		alarmAudio.src = "";
+		alarmAudio.load(); // For mobile browsers
+		alarmAudio.removeEventListener("ended", onEnded);
 	}
 
 	alarmAudio = new Audio(song.url);
+	alarmAudio.addEventListener("ended", onEnded);
 	alarmAudio.play();
 	navigator.vibrate([500, 300, 500]);
 	document.title = `Time is up! ⏳`;
-
-	const onEnded = () => {
-		if (alarmStopped) return;
-
-		alarmRepeatCount--;
-
-		if (alarmRepeatCount > 0) {
-			alarmAudio.currentTime = 0;
-			alarmAudio.play();
-			navigator.vibrate([500, 300, 500]);
-		} else {
-			alarmRepeatCount = settings.notifications.repeat;
-			hideWithAnimation(alarmModal, "move-right", "move-left");
-			document.title = "Pomodoro Timer";
-			alarmAudio.removeEventListener("ended", onEnded);
-		}
-	};
-
-	alarmAudio.addEventListener("ended", onEnded);
 }
 
 alarmModalStopBtn.addEventListener("click", stopAlarm);
@@ -106,6 +108,8 @@ function stopAlarm() {
 		alarmAudio.pause();
 		alarmAudio.currentTime = 0;
 		alarmAudio.src = "";
+		alarmAudio.load(); // For mobile browsers
+		alarmAudio.removeEventListener("ended", onEnded);
 	}
 
 	hideWithAnimation(alarmModal, "move-right", "move-left");

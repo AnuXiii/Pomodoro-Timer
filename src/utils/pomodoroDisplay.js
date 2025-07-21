@@ -41,7 +41,7 @@ async function pictureInPictureHandler() {
 	// add styles
 	const styles = document.createElement("link");
 	styles.rel = "stylesheet";
-	styles.href = "/src/style.css";
+	styles.href = app.querySelector('[rel="stylesheet"]').href;
 
 	// add to body
 	appClone.querySelector("c-header").hidden = true;
@@ -52,7 +52,7 @@ async function pictureInPictureHandler() {
 	// add script
 	const script = document.createElement("script");
 	script.type = "module";
-	script.src = "/src/main.js";
+	script.src = app.querySelector('[type="module"]').href;
 
 	// append to pipWindow body
 	pipWindow.document.body.append(script);
