@@ -65,10 +65,10 @@ function alarm() {
 	navigator.vibrate([500, 300, 500]);
 	document.title = `Time is up ! ⏳`;
 
-	alarmAudio.addEventListener("ended", () => {
+	alarmAudio.addEventListener("timeupdate", () => {
 		if (alarmStopped) return;
 
-		alarmRepeatCount--;
+		if (alarmAudio.currentTime === 0) alarmRepeatCount--;
 
 		if (alarmRepeatCount > 0) {
 			alarmAudio.currentTime = 0;
