@@ -131,8 +131,8 @@
 	}
 }
 
-[type="number"]::-webkit-inner-spin-button {
-	@apply appearance-none;
+[type="number"] {
+	@apply w-20;
 }
 
 .custom-checkbox {

@@ -60,12 +60,24 @@ function alarm() {
 	alarmRepeatCount = settings.notifications.repeat;
 	alarmStopped = false;
 
+	if (!song.url) {
+		toast("No alarm sound selected!", "bg-red-500", "play");
+		hideWithAnimation(alarmModal, "move-right", "move-left");
+		return;
+	}
+
+	if (alarmAudio) {
+		alarmAudio.pause();
+		alarmAudio.currentTime = 0;
+		alarmAudio.src = "";
+	}
+
 	alarmAudio = new Audio(song.url);
 	alarmAudio.play();
 	navigator.vibrate([500, 300, 500]);
 	document.title = `Time is up! ⏳`;
 
-	alarmAudio.addEventListener("ended", () => {
+	const onEnded = () => {
 		if (alarmStopped) return;
 
 		alarmRepeatCount--;
@@ -78,8 +90,11 @@ function alarm() {
 			alarmRepeatCount = settings.notifications.repeat;
 			hideWithAnimation(alarmModal, "move-right", "move-left");
 			document.title = "Pomodoro Timer";
+			alarmAudio.removeEventListener("ended", onEnded);
 		}
-	});
+	};
+
+	alarmAudio.addEventListener("ended", onEnded);
 }
 
 alarmModalStopBtn.addEventListener("click", stopAlarm);
