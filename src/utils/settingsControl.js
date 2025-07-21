@@ -2,6 +2,12 @@ import { settings, state } from "./settings";
 import { hideWithAnimation, showWithAnimation } from "./animationUtils";
 import { timeConvertor } from "./ui";
 
+window.addEventListener("load", () => {
+	const mobileDevices = ["iPhone", "Android", "iPad"];
+	const isMobile = mobileDevices.some((mobile) => navigator.userAgent.includes(mobile));
+	if (isMobile) tracker.hidden = true;
+});
+
 // Maximum Time
 const MAX_MINUTE = 99;
 
@@ -48,10 +54,6 @@ function modalNavTracker(e) {
 modalNav.onmouseleave = () => {
 	tracker.classList.remove("on");
 };
-
-const mobileDevices = ["iPhone", "Android", "iPad"];
-const isMobile = mobileDevices.some((mobile) => navigator.userAgent.includes(mobile));
-if (isMobile) tracker.classList.add("hidden");
 
 // handle switch between tabs on nav
 modalNav.addEventListener("click", switchTab);
