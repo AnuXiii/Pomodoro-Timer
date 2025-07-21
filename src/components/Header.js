@@ -67,7 +67,7 @@ class Header extends HTMLElement {
 									</li>
 								</ul>
 							</li>
-							<li role="listbox">
+							<li role="listbox" class="hidden md:block">
 								<button
 									role="button"
 									aria-label="minimize"

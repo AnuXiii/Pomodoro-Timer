@@ -75,7 +75,9 @@ function alarm() {
 			alarmAudio.play();
 			navigator.vibrate([500, 300, 500]);
 		} else {
-			stopAlarm();
+			alarmRepeatCount = settings.notifications.repeat;
+			hideWithAnimation(alarmModal, "move-right", "move-left");
+			document.title = "Pomodoro Timer";
 		}
 	});
 }
@@ -88,6 +90,7 @@ function stopAlarm() {
 	if (alarmAudio) {
 		alarmAudio.pause();
 		alarmAudio.currentTime = 0;
+		alarmAudio.src = "";
 	}
 
 	hideWithAnimation(alarmModal, "move-right", "move-left");
