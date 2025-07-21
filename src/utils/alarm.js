@@ -88,8 +88,9 @@ function stopAlarm() {
 	alarmStopped = true;
 
 	if (alarmAudio) {
-		alarmAudio.currentTime = 0;
 		alarmAudio.pause();
+		alarmAudio.currentTime = 0;
+		alarmAudio.src = "";
 	}
 
 	hideWithAnimation(alarmModal, "move-right", "move-left");

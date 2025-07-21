@@ -1,6 +1,7 @@
 import songs from "../data";
 import { hideWithAnimation, showWithAnimation } from "../utils/animationUtils";
 import { settings } from "../utils/settings";
+import Loader from "./Loader";
 
 class Select extends HTMLElement {
 	#isOpen = false;
@@ -80,15 +81,20 @@ class Select extends HTMLElement {
 			placeholder.textContent = button.textContent;
 			selectInput.value = button.dataset.value;
 			selectInput.dispatchEvent(new Event("change", { bubbles: true }));
+			Loader(selectTogglerBtn, true);
 
-			newAudio.addEventListener("timeupdate", () => {
-				if (newAudio.currentTime > 0.6) {
-					newAudio.currentTime = 0;
-					newAudio.pause();
-				}
+			newAudio.addEventListener("loadeddata", () => {
+				Loader(selectTogglerBtn, false);
+				newAudio.addEventListener("timeupdate", () => {
+					if (newAudio.currentTime > 0.6) {
+						newAudio.currentTime = 0;
+						newAudio.pause();
+					}
+				});
+
+				newAudio.play();
 			});
 
-			newAudio.play();
 			dropdownToggler();
 		};
 

@@ -49,6 +49,10 @@ modalNav.onmouseleave = () => {
 	tracker.classList.remove("on");
 };
 
+const mobileDevices = ["iPhone", "Android", "iPad"];
+const isMobile = mobileDevices.some((mobile) => navigator.userAgent.includes(mobile));
+if (isMobile) tracker.classList.add("hidden");
+
 // handle switch between tabs on nav
 modalNav.addEventListener("click", switchTab);
 
