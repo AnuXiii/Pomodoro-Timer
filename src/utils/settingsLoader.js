@@ -19,11 +19,14 @@ const settingsMap = {
 
 	sendNotificationCheckbox: document.querySelector("#send-notification"),
 	alarmCheckbox: document.querySelector("#active-alarm"),
+	alarmSelectContainer: document.querySelector('[data-id="alarm-select"]'),
+	alarmDefaultSong: document.querySelector(".options li button"),
 	alarmSelectInput: document.querySelector("#alarm-select"),
-	alarmRepeatCount: document.querySelector("#alarm-repeat-count"),
+	uploadSongText: document.querySelector("#song-name"),
+	customSongInput: document.querySelector("#custom-song"),
 };
 
-function loadSettingsToUi(settings) {
+async function loadSettingsToUi(settings) {
 	const { modeTimes, notifications } = settings;
 
 	for (const mode in settingsMap.settingsModesInput) {
@@ -38,11 +41,15 @@ function loadSettingsToUi(settings) {
 	settingsMap.sendNotificationCheckbox.checked = notifications.enabled;
 	settingsMap.alarmCheckbox.checked = notifications.alarmEnabled;
 	settingsMap.alarmSelectInput.value = notifications.alarmSelected;
-	settingsMap.alarmRepeatCount.value = notifications.repeat;
 
 	settingsMap.currentMode.textContent = timeConvertor(
 		modeTimes[settingsMap.currentMode.getAttribute("current-mode")] * 60,
 	);
+
+	if (notifications.customSongName !== "") {
+		settingsMap.alarmSelectContainer.classList.add("disabled");
+		settingsMap.uploadSongText.textContent = notifications.customSongName;
+	}
 }
 
 const resetSettingsBtn = document.getElementById("reset-settings");
@@ -50,9 +57,15 @@ resetSettingsBtn.addEventListener("click", resetSettings);
 
 function resetSettings() {
 	localStorage.removeItem("settings");
+	indexedDB.deleteDatabase("songDB");
 	Object.assign(settings, structuredClone(defaultSettings));
 	loadSettingsToUi(settings);
-	document.querySelector(".options li button").click();
+	//
+	settingsMap.alarmDefaultSong.click();
+	settingsMap.alarmSelectContainer.classList.remove("disabled");
+	settingsMap.uploadSongText.textContent = "Selected";
+	settingsMap.customSongInput.value = "";
+	//
 	toast("Settings reset", "bg-blue-500");
 }
 

@@ -9,11 +9,11 @@ A modern, customizable Pomodoro Timer web application built with Vite, vanilla J
 
 - **Pomodoro, Short Break, Long Break Modes**: Easily switch between focus and break sessions.
 - **Customizable Durations**: Set your own durations for each mode.
-- **Notifications & Alarms**: Get notified when a session ends, with a choice of alarm sounds and repeat count.
+- **Notifications & Alarms**: Get notified when a session ends, with a choice of alarm sounds or upload custom sounds
 - **Theme Support**: Switch between light, dark, and system themes.
 - **Responsive Design**: Works well on desktop and mobile devices.
 - **Picture-in-Picture & Fullscreen**: Minimize or maximize the timer for distraction-free focus.
-- **Persistent Settings**: All preferences are saved in local storage.
+- **Persistent Settings**: All preferences are saved in local storage and indexedDB
 
 ## Getting Started
 
@@ -50,18 +50,6 @@ A modern, customizable Pomodoro Timer web application built with Vite, vanilla J
 ```sh
 npm run build
 ```
-
-## Project Structure
-
-- `src/` - Main source code
-  - `components/` - Custom UI components (Header, Dropdown, Select, Toast)
-  - `css/` - Custom CSS and Tailwind layers
-  - `data/` - Alarm sound data
-  - `theme/` - Theme management
-  - `utils/` - Core logic (timer, settings, notifications, etc.)
-- `public/` - Static assets (alarm sounds, icons)
-- `index.html` - Main HTML file
-- `vite.config.js` - Vite configuration
 
 ## Development Roadmap
 

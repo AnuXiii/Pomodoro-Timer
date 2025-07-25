@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -695,7 +695,7 @@
 										aria-label="select alarm sound"
 										title="alarm sounds"
 										tabindex="0"
-										class="flex justify-between items-center cursor-pointer group">
+										class="flex justify-between items-center group">
 										<span
 											class="duration-200 font-medium text-black/70 dark:text-white/80 group-hover:text-black/60 dark:group-hover:text-white/60"
 											>Select Sound</span
@@ -706,23 +706,74 @@
 									</li>
 									<!--  -->
 									<li
-										aria-label="repeat count"
-										title="repeat-count"
+										aria-label="upload alarm sound"
+										title="upload sound section"
 										tabindex="0"
-										class="flex justify-between items-center cursor-pointer gap-4 group">
-										<span
-											class="duration-200 font-medium text-black/70 dark:text-white/80 group-hover:text-black/60 dark:group-hover:text-white/60"
-											>Alarm Repeat count</span
-										>
-										<div class="input-holder">
-											<input
-												type="number"
-												name="alarm-repeat-count"
-												id="alarm-repeat-count"
-												value="1"
-												min="1"
-												max="99"
-												class="w-16 text-2xl text-center border border-solid border-black/10 rounded-lg dark:border-white/10 dark:bg-neutral-700 px-4 py-1" />
+										class="flex justify-between items-center">
+										<span class="duration-200 font-medium text-black/70 dark:text-white/80">Uplaod Song</span>
+										<div class="flex items-center gap-2 custom-song-wrapper">
+											<button
+												role="button"
+												aria-label="delete song"
+												title="delete song"
+												id="delete-song"
+												class="text-white text-xl rounded-lg px-2 py-1.5 bg-rose-500 border border-solid border-black/10 dark:border-white/10 hover:bg-transparent hover:text-black duration-200 ease-custom text-center flex justify-center dark:hover:text-white">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													class="lucide lucide-trash-icon lucide-trash">
+													<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+													<path d="M3 6h18" />
+													<path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+												</svg>
+											</button>
+											<label
+												for="custom-song"
+												class="cursor-pointer">
+												<span
+													class="w-[144px] bg-blue-500 flex justify-between items-center gap-2 rounded-lg py-1 px-2 text-xl border border-solid border-black/10 dark:border-white/10 text-white duration-200 ease-custom hover:opacity-90">
+													<span
+														id="song-name"
+														class="text-ellipsis text-nowrap overflow-hidden"
+														>Select</span
+													>
+													<svg
+														class="icon-svg flex-shrink-0"
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														class="lucide lucide-file-music-icon lucide-file-music">
+														<path d="M10.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v8.4" />
+														<path d="M8 18v-7.7L16 9v7" />
+														<circle
+															cx="14"
+															cy="16"
+															r="2" />
+														<circle
+															cx="6"
+															cy="18"
+															r="2" />
+													</svg>
+												</span>
+												<input
+													type="file"
+													id="custom-song"
+													accept="audio/*"
+													hidden />
+											</label>
 										</div>
 									</li>
 									<!--  -->
@@ -740,9 +791,9 @@
 		<div
 			hidden
 			id="alarm-modal"
-			class="fixed right-5 bottom-5 z-99 flex justify-center items-center bg-white/10 dark:bg-black/90 backdrop-blur-sm roudned-lg">
+			class="backdrop-blur-lg fixed right-5 bottom-5 z-99 flex justify-center items-center roudned-2xl">
 			<div
-				class="flex flex-col items-center text-center bg-white/10 rounded-lg inset-shadow-[0_0_10px_200px_black] inset-shadow-white/10 border border-solid border-black/20 dark:border-white/20 px-4 md:px-8 py-4">
+				class="flex flex-col items-center text-center bg-white/60 dark:bg-black/40 rounded-lg inset-shadow-[0_0_10px_200px_black] inset-shadow-white/10 border border-solid border-black/20 dark:border-white/20 px-4 md:px-8 py-4">
 				<figure class="mb-5 md:mb-10">
 					<img
 						src="/fav.svg"

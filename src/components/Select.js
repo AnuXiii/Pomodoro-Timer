@@ -7,7 +7,7 @@ class Select extends HTMLElement {
 	#isOpen = false;
 
 	connectedCallback() {
-		const id = this.dataset.id || null;
+		const id = this.dataset.id || "";
 		const placeholder = this.dataset.placeholder || "";
 
 		let options = [];
@@ -47,8 +47,8 @@ class Select extends HTMLElement {
 											.join("")}
                 </div>
                 <input name="${id}" id="${id}" value="${
-									settings.notifications.alarmSelected || 1
-								}" class="select-input" hidden/>
+			settings.notifications.alarmSelected || 1
+		}" class="select-input" hidden/>
             </div>
         `;
 	}
@@ -102,7 +102,7 @@ class Select extends HTMLElement {
 		options.addEventListener("click", optionSelector);
 
 		document.addEventListener("click", (e) => {
-			if (this.#isOpen && !e.target.closest(".c-select")) {
+			if (this.#isOpen && e.target.contains(this)) {
 				dropdownToggler();
 			}
 		});

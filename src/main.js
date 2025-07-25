@@ -6,6 +6,7 @@ import "./utils/settingsControl";
 import "./components/Select";
 import "./utils/notification";
 import "./utils/alarm";
+import "./utils/customAlarm";
 import "./utils/settingsLoader";
 
 import { loadTheme } from "./theme/theme";

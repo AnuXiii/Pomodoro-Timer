@@ -17,7 +17,7 @@ const defaultSettings = {
 		enabled: false,
 		alarmEnabled: false,
 		alarmSelected: 1,
-		repeat: 1,
+		customSongName: "",
 	},
 };
 

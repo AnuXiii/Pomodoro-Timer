@@ -14,9 +14,6 @@ async function notificationHandler() {
 		if (permission === "granted") {
 			toast("Notifications activated", "bg-blue-500", "play");
 			settings.notifications.enabled = true;
-		} else {
-			toast("Notification permission denied", "bg-rose-500", "play");
-			settings.notifications.enabled = true;
 		}
 	} else {
 		settings.notifications.enabled = false;
@@ -30,7 +27,7 @@ function sendNotif() {
 	}
 
 	new Notification(`${state.mode} session ended`, {
-		body: `Go another ${state.mode} session`,
+		body: `Go another ${state.mode} session or break :)`,
 		icon: "/fav.svg",
 	});
 }

@@ -3,8 +3,9 @@ import { updateCircle } from "./timer";
 
 const timerBox = document.querySelector(".timer");
 const timerModesIcon = document.querySelector(".timer-mode--icon");
-const timerNumberText = document.getElementById("time");
 const timerModeText = document.querySelector(".timer-mode--text");
+const timerNumberText = document.getElementById("time");
+
 const modes = ["focus", "short", "long"];
 let currentModeIndex = 0;
 
@@ -30,7 +31,7 @@ function padding(num) {
 
 function timeConvertor(num) {
 	const minutes = Math.floor(num / 60);
-	const seconds = Math.floor(num % 60);
+	const seconds = num % 60;
 
 	return `${padding(minutes)}:${padding(seconds)}`;
 }

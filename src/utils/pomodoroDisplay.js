@@ -6,9 +6,9 @@ const header = document.querySelector(".header");
 const headerHeight = window.getComputedStyle(header).height;
 let isFullscreen = false;
 
-fullscreenBtn.addEventListener("click", fullScreenHandler);
+fullscreenBtn.addEventListener("click", SetfullScreen);
 
-function fullScreenHandler() {
+function SetfullScreen() {
 	if (!isFullscreen) {
 		header.style.height = 0;
 		header.classList.add("overflow-hidden");
@@ -17,9 +17,9 @@ function fullScreenHandler() {
 	}
 }
 
-document.addEventListener("keydown", exitFullScreenHandler);
+document.addEventListener("keydown", exitFullScreen);
 
-function exitFullScreenHandler(e) {
+function exitFullScreen(e) {
 	if (e.key.toLowerCase() === "escape") {
 		header.classList.remove("overflow-hidden");
 		header.style.height = headerHeight;
