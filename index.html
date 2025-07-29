@@ -784,55 +784,46 @@
 				</div>
 			</main>
 			<!-- main close -->
-		</div>
-		<!-- app close -->
 
-		<!-- alarm modal -->
-		<div
-			hidden
-			id="alarm-modal"
-			class="backdrop-blur-lg fixed right-5 bottom-5 z-99 flex justify-center items-center roudned-2xl">
+			<!-- alarm modal -->
 			<div
-				class="flex flex-col items-center text-center bg-white/60 dark:bg-black/40 rounded-lg inset-shadow-[0_0_10px_200px_black] inset-shadow-white/10 border border-solid border-black/20 dark:border-white/20 px-4 md:px-8 py-4">
-				<figure class="mb-5 md:mb-10">
-					<img
-						src="/fav.svg"
-						alt=""
-						class="size-16 md:size-32" />
-				</figure>
-				<!--  -->
-				<div class="flex flex-col mb-5 md:mb-10">
-					<h2 class="mb-1 font-semibold text-xl md:text-4xl text-rose-500">Alarm activated</h2>
-					<p class="text-sm md:text-base text-black/70 dark:text-white/70">The allotted time has expired</p>
-				</div>
-				<!--  -->
-				<div class="flex justify-between items-center w-full gap-4">
-					<div class="btn-holder w-full">
-						<button
-							role="button"
-							aria-label="Dismiss alarm"
-							title="Dismiss alarm"
-							id="dismiss-alarm"
-							class="bg-neutral-200 dark:bg-neutral-900/50 flex justify-center items-center border-2 border-solid border-black/10 dark:border-white/20 rounded-lg py-2 md:py-3 w-full duration-200 ease-custom hover:bg-neutral-300 dark:hover:bg-neutral-800">
-							Dismiss
-						</button>
+				hidden
+				id="alarm-modal"
+				class="backdrop-blur-lg fixed right-5 bottom-5 z-99 flex justify-center items-center roudned-2xl">
+				<div
+					class="flex flex-col items-center text-center bg-white/60 dark:bg-black/40 rounded-lg inset-shadow-[0_0_10px_200px_black] inset-shadow-white/10 border border-solid border-black/20 dark:border-white/20 px-4 md:px-8 py-4">
+					<figure class="mb-5 md:mb-10">
+						<img
+							src="/fav.svg"
+							alt=""
+							class="size-16 md:size-32" />
+					</figure>
+					<!--  -->
+					<div class="flex flex-col mb-5 md:mb-10">
+						<h2 class="mb-1 font-semibold text-xl md:text-4xl text-rose-500">Alarm activated</h2>
+						<p class="text-sm md:text-base text-black/70 dark:text-white/70">The allotted time has expired</p>
 					</div>
-					<div class="btn-holder w-full">
-						<button
-							role="button"
-							aria-label="Stop alarm"
-							title="Stop alarm"
-							id="stop-alarm"
-							class="text-white bg-rose-500 flex justify-center items-center border-2 border-solid border-white/20 dark:border-white/50 rounded-lg py-2 md:py-3 w-full duration-200 ease-custom hover:bg-rose-500/80">
-							Stop
-						</button>
+					<!--  -->
+					<div class="flex justify-between items-center w-full gap-4">
+						<div class="btn-holder w-full">
+							<button
+								role="button"
+								aria-label="Stop alarm"
+								title="Stop alarm"
+								id="stop-alarm"
+								class="text-white bg-rose-500 flex justify-center items-center border-2 border-solid border-white/20 dark:border-white/50 rounded-lg py-2 md:py-3 w-full duration-200 ease-custom hover:bg-rose-500/80">
+								Stop
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- app close -->
 
 		<!-- scripts -->
 		<script
+			id="test"
 			type="module"
 			src="/src/main.js"></script>
 	</body>

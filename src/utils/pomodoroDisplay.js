@@ -34,26 +34,31 @@ async function pictureInPictureHandler() {
 
 	const pipWindow = await window.documentPictureInPicture.requestWindow({ width: 300, height: 415 });
 
-	// copy root
-	const app = document.documentElement;
+	const app = document.getElementById("app");
 	const appClone = app.cloneNode(true);
 
-	// add styles
-	const styles = document.createElement("link");
-	styles.rel = "stylesheet";
-	styles.href = app.querySelector('[rel="stylesheet"]').href;
+	// Create style
+	const styleLink = document.createElement("link");
+	styleLink.rel = "stylesheet";
+	styleLink.href = document.querySelector('link[rel="stylesheet"]').href;
 
-	// add to body
-	appClone.querySelector("c-header").hidden = true;
+	// Create script
+	const originalScript = document.querySelector("#test");
+	const newScript = document.createElement("script");
+	newScript.type = "module";
+	newScript.src = originalScript.src;
+
+	// Add custom container for your mini-app
+	const miniAppContainer = document.createElement("div");
+	miniAppContainer.innerHTML = `<c-header></c-header>`;
+	miniAppContainer.append(appClone);
+	// OR build your real UI here
+
 	appClone.querySelector(".main").style.padding = "0";
-	pipWindow.document.head.append(styles);
-	pipWindow.document.body.append(appClone);
+	appClone.querySelector(".main .pomodoro").style.borderRadius = "0";
 
-	// add script
-	const script = document.createElement("script");
-	script.type = "module";
-	script.src = app.querySelector('[type="module"]').href;
-
-	// append to pipWindow body
-	pipWindow.document.body.append(script);
+	// Append to pipWindow
+	pipWindow.document.head.appendChild(styleLink);
+	pipWindow.document.body.appendChild(miniAppContainer);
+	pipWindow.document.body.appendChild(newScript);
 }

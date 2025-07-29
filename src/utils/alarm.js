@@ -8,7 +8,6 @@ let alarmAudio;
 
 const alarmCheckBox = document.getElementById("active-alarm");
 const alarmModal = document.getElementById("alarm-modal");
-const alarmModalDismissBtn = document.getElementById("dismiss-alarm");
 const alarmModalStopBtn = document.getElementById("stop-alarm");
 
 //
@@ -53,8 +52,6 @@ async function alarm() {
 		return;
 	}
 
-	resetAlarm();
-
 	alarmAudio = new Audio(song.url);
 	alarmAudio.play();
 
@@ -71,11 +68,6 @@ function stopAlarm() {
 	hideWithAnimation(alarmModal, "move-right", "move-left");
 	document.title = "Pomodoro Timer";
 }
-
-alarmModalDismissBtn.addEventListener("click", () => {
-	hideWithAnimation(alarmModal, "move-right", "move-left");
-	document.title = "Pomodoro Timer";
-});
 
 function resetAlarm() {
 	if (alarmAudio) {

@@ -16,6 +16,8 @@ timerBox.addEventListener("keyup", (e) => (e.key === "Enter" || " " ? switchMode
 state.timeLeft = settings.modeTimes[state.mode] * 60;
 
 function switchMode() {
+	if (state.isRunning) return;
+
 	currentModeIndex = (currentModeIndex + 1) % modes.length;
 	state.mode = modes[currentModeIndex];
 
