@@ -16,7 +16,7 @@ const openSettingsBtn = document.getElementById("open-settings");
 // select pomodoro mdoal and buttons
 const pomodoro = document.querySelector(".pomodoro");
 const pomodoroModal = document.querySelector(".pomodoro-modal");
-const clsoeModalBtn = document.getElementById("close-modal");
+const closeModalBtn = document.getElementById("close-modal");
 const backPrevBtn = document.getElementById("back-previeus");
 const pomodoroModalTitle = document.getElementById("pomodoro-modal-title");
 
@@ -35,7 +35,7 @@ openSettingsBtn.addEventListener("click", () => {
 	showWithAnimation(pomodoroModal, "fade-in", "fade-out");
 });
 
-clsoeModalBtn.addEventListener("click", () => {
+closeModalBtn.addEventListener("click", () => {
 	hideWithAnimation(pomodoroModal, "fade-in", "fade-out");
 });
 
@@ -45,9 +45,9 @@ modalNav.addEventListener("mousemove", (e) => modalNavTracker(e));
 function modalNavTracker(e) {
 	const rect = modalNavBtn.getBoundingClientRect();
 	const mouseX = e.clientX;
-	const offect = mouseX - rect.x - 80;
+	const offset = mouseX - rect.x - 80;
 	tracker.style.width = rect.width + "px";
-	tracker.style.left = offect + "px";
+	tracker.style.left = offset + "px";
 	tracker.classList.add("on");
 }
 
@@ -97,7 +97,7 @@ function switchHandler(targetToHide, targetToDelay, backState, closeState, title
 	hideWithAnimation(targetToHide, "move-right", "move-left");
 	setTimeout(() => showWithAnimation(targetToDelay, "move-right", "move-left"), 200);
 	backPrevBtn.parentElement.hidden = backState;
-	clsoeModalBtn.parentElement.hidden = closeState;
+	closeModalBtn.parentElement.hidden = closeState;
 	pomodoroModalTitle.hidden = titleState;
 	pomodoro.classList.add("overflow-hidden");
 }
