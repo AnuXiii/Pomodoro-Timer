@@ -30,7 +30,7 @@ async function startTimer() {
 	state.timer = setInterval(() => {
 		if (state.timeLeft <= 0) {
 			// reset all of progress
-			endedSession();
+			endedSession("ended");
 			return;
 		}
 
@@ -62,10 +62,10 @@ function updateCircle() {
 resetTimerBtn.addEventListener("click", () => {
 	document.title = "Pomodoro Timer";
 	state.timeLeft = settings.modeTimes[state.mode] * 60;
-	endedSession();
+	endedSession("reset");
 });
 
-function endedSession() {
+function endedSession(endType) {
 	startTimerBtn.textContent = "START";
 	state.isRunning = false;
 	state.timeLeft = settings.modeTimes[state.mode] * 60;
@@ -73,6 +73,7 @@ function endedSession() {
 	updateUi(currentModeIndex, state.mode);
 	updateCircle();
 
+	if (endType === "reset") return;
 	// show notifications if enabled in settings
 	alarm();
 	sendNotif();
