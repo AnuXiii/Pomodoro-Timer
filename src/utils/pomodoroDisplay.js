@@ -43,16 +43,14 @@ async function pictureInPictureHandler() {
 	styleLink.href = document.querySelector('link[rel="stylesheet"]').href;
 
 	// Create script
-	const originalScript = document.querySelector("#test");
+	const originalScript = document.querySelector('type="module"');
 	const newScript = document.createElement("script");
 	newScript.type = "module";
 	newScript.src = originalScript.src;
 
-	// Add custom container for your mini-app
 	const miniAppContainer = document.createElement("div");
 	miniAppContainer.innerHTML = `<c-header></c-header>`;
 	miniAppContainer.append(appClone);
-	// OR build your real UI here
 
 	appClone.querySelector(".main").style.padding = "0";
 	appClone.querySelector(".main .pomodoro").style.borderRadius = "0";
