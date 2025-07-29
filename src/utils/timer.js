@@ -13,10 +13,12 @@ function startPomodoro() {
 	if (!state.isRunning) {
 		startTimer();
 		startTimerBtn.textContent = "STOP";
+		startTimerBtn.title = "STOP timer";
 	} else {
 		stopTimer();
 		startTimerBtn.textContent = "RESUME";
 		document.title = "Resume";
+		startTimerBtn.title = "Resume timer";
 	}
 }
 
@@ -27,10 +29,6 @@ async function startTimer() {
 
 	state.timer = setInterval(() => {
 		if (state.timeLeft <= 0) {
-			// show notifications if enabled in settings
-			alarm();
-			sendNotif();
-
 			// reset all of progress
 			endedSession();
 			return;
@@ -74,6 +72,10 @@ function endedSession() {
 	clearInterval(state.timer);
 	updateUi(currentModeIndex, state.mode);
 	updateCircle();
+
+	// show notifications if enabled in settings
+	alarm();
+	sendNotif();
 }
 
 export { updateCircle };
