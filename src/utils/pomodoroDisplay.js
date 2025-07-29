@@ -43,7 +43,7 @@ async function pictureInPictureHandler() {
 	styleLink.href = document.querySelector('link[rel="stylesheet"]').href;
 
 	// Create script
-	const originalScript = document.querySelector('type="module"');
+	const originalScript = document.querySelector('script[type="module"]');
 	const newScript = document.createElement("script");
 	newScript.type = "module";
 	newScript.src = originalScript.src;
